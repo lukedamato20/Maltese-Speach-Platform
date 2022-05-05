@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <!-- Text Input -->
+    <div class="row">
+        <div class="column side"> </div>
+        <div class="column middle">
+
+            <h1 style="text-align: center">Text Input</h1>
+            <br>
+
+            <div class="custom-card">
+                <div>
+                    <form action="/action_page.php">
+                        <label for="input-text">Enter the text...</label>
+                        <input type="text" id="input-text" name="input-text" placeholder="Enter a phrase, sentence or paragraph...">
+
+                        <label for="country">Options</label>
+                        <select id="country" name="country">
+                            <option value="option1">Option 1</option>
+                            <option value="option2">Option 2</option>
+                        </select>
+
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="column side"> </div>
+    </div>
+
+    <!-- Speech Output -->
+    <div class="row">
+        <div class="column side"> </div>
+        <div class="column middle">
+
+            <h1 style="text-align: center">Speech Output</h1>
+            <br>
+
+            <div class="custom-card" style="align-items: center;" >
+                <br>
+                <div class="audio-container">
+                    <audio src="https://www.zapsplat.com/wp-content/uploads/2015/sound-effects-61905/zapsplat_multimedia_alert_chime_short_musical_notification_cute_child_like_001_64918.mp3?_=1" controls="true" class="audio-1"></audio>
+                </div>
+                <br>
+            </div>
+        </div>
+
+        <div class="column side"> </div>
+    </div>
+
+    <script src="{{ url_for('static',filename='scripts.js') }}"></script>
+{% endblock %}
