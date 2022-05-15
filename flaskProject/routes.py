@@ -1,5 +1,5 @@
 from flaskfiles import app
-from flask import render_template, request
+from flask import Flask, redirect, url_for, render_template, request
 
 
 @app.route('/')
@@ -22,6 +22,7 @@ def demo():
 
 @app.route('/demo/result', methods=['POST', "GET"])
 def demo_result():
-    output = request.form.to_dict()
-    name = output["name"]
-    return render_template('demo.html',name=name,title='TTS - Demo',)
+    text = request.form['text']
+    text_manipulation(text)
+
+    return redirect('demo.html')
