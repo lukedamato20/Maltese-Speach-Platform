@@ -1,5 +1,5 @@
 from flaskfiles import app
-from flask import render_template
+from flask import render_template, request
 
 
 @app.route('/')
@@ -18,3 +18,10 @@ def about():
 @app.route('/demo/')
 def demo():
     return render_template('demo.html', title='TTS - Demo')
+
+
+@app.route('/demo/result', methods=['POST', "GET"])
+def demo_result():
+    output = request.form.to_dict()
+    name = output["name"]
+    return render_template('demo.html',name=name,title='TTS - Demo',)
