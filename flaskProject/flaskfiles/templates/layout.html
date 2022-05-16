@@ -11,12 +11,14 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+
 </head>
 <body>
     <!-- Header -->
     <div class="header">
         <h1>Text-To-Speech</h1>
-        <p>Group Assigned Practical Task 2021/2022</p>
+        <h4>Group Assigned Practical Task 2021/2022</h4>
     </div>
 
     <!-- Navbar -->
@@ -31,17 +33,21 @@
 
     {% endblock %}
     <br>
-
+    <br>
     <!-- Footer -->
 
-    <footer class="footer-basic">
+    <footer class="footer">
+        <br>
         <ul class="list-inline">
-            <li class="list-inline-item"><a href="{{ url_for('home') }}">Home</a></li>
-            <li class="list-inline-item"><a href="{{ url_for('about') }}">About</a></li>
-            <li class="list-inline-item"><a href="{{ url_for('demo') }}">Demo</a></li>
-            <li class="list-inline-item"><a href="{{ url_for('home') }}">Credit</a></li>
+            <li style="text-decoration: none" class="list-inline-item"><a href="{{ url_for('home') }}">Home</a></li>
+            <li style="text-decoration: none" class="list-inline-item"><a href="{{ url_for('about') }}">About</a></li>
+            <li style="text-decoration: none" class="list-inline-item"><a href="{{ url_for('demo') }}">Demo</a></li>
+            <li style="text-decoration: none" class="list-inline-item"><a href="{{ url_for('home') }}">Credit</a></li>
         </ul>
+        <br>
+        <br>
         <p class="copyright">University of Malta - Group Assigned Practical Task 2021/2022</p>
+        <br>
     </footer>
 
 

@@ -2,12 +2,15 @@ body,h1,h2,h3,h4 {
     font-family: "Lato", sans-serif;
     width: 100%;
     overflow-x: hidden;
+    /*overflow-y: hidden;*/
 }
 .header {
     /* Header/Blog Title */
-    padding: 20px;
+    padding: 70px;
     text-align: center;
-    background: white;
+    background: rgb(0,136,255);
+    background: linear-gradient(90deg, rgba(0,136,255,0.7) 0%, rgba(0,174,255,0.7) 50%, rgba(91,236,255,0.7) 100%);
+    font-family: "Trirong", serif;
     width: 100%;
 }
 .header h1 {
@@ -26,7 +29,7 @@ body,h1,h2,h3,h4 {
     display: block;
     color: #f2f2f2;
     text-align: center;
-    padding: 25px 30px;
+    padding: 30px 40px;
     font-size: large;
     text-decoration: none;
 }
@@ -71,6 +74,7 @@ input[type=submit]:hover {
 .column.middle {
     /* Middle column */
     width: 40%;
+    padding: 30px;
 }
 .row:after {
     /* Clear floats after the columns */
@@ -78,11 +82,25 @@ input[type=submit]:hover {
     display: table;
     clear: both;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
     /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 
     .column.side, .column.middle {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+
+    .column.side {
+        /* Left and right column */
+        width: 15%;
+    }
+    .column.middle {
+        /* Middle column */
+        width: 70%;
+        padding: 30px;
     }
 }
 
@@ -105,7 +123,7 @@ input[type=submit]:hover {
 
 .footer {
     /* Footer */
-    position:fixed;
+    /*position:fixed;*/
     bottom:0;
     width:100%;
     height:60px;   /* Height of the footer */
