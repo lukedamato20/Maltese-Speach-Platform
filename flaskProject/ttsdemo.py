@@ -1,30 +1,25 @@
 import soundfile as sf
 import numpy as np
-## Setup hyper parameters
-import hparams
 
+# Setup hyper parameters
+import hparams
 
 # Inject frontend text processor
 import synthesis
 import train
 from deepvoice3_pytorch import frontend
 
-
-## Load Model Checkpoint
+# Load Model Checkpoint
 from train import build_model
 from train import restore_parts, load_checkpoint
 
-
-## Preprocess Text
+# Preprocess Text
 from g2p_cw_rules import g2p_cw_rules
 import re
 
-
-#change the checkpoint path to change the model
+# change the checkpoint path to change the model
 preset = "deepvoice3_ljspeech.json"
 checkpoint_path = "checkpoint_step000750000_Exp13.pth"
-
-
 
 # Load parameters from preset
 with open(preset) as f:
@@ -33,12 +28,12 @@ with open(preset) as f:
 synthesis._frontend = getattr(frontend, "en")
 train._frontend = getattr(frontend, "en")
 
-# alises
+# aliases
 fs = hparams.hparams.sample_rate
 hop_length = hparams.hparams.hop_size
 
 
-## Define Utility Functions
+# Define Utility Functions
 def tts(model, text, p=0, speaker_id=None, fast=True, figures=True):
     from synthesis import tts as _tts
     waveform, alignment, spectrogram, mel = _tts(model, text, p, speaker_id, fast)
@@ -46,9 +41,9 @@ def tts(model, text, p=0, speaker_id=None, fast=True, figures=True):
     sf.write('static\output.wav', waveform, fs, 'PCM_24')
 
 
-
 model = build_model()
 model = load_checkpoint(checkpoint_path, model, None, True)
+
 
 # Enter the Sentence/word in Maltese into the string 'texts'
 # text = "Jien jisimni Lijża, l-assistenta diġitali tiegħakk, u mil-lumm, għandi vuċi ġdida."
