@@ -8,7 +8,7 @@ app = Flask(__name__, static_url_path='../../static')
 
 @app.route('/')
 def testing_flask():
-    return render_template('testing_flask.html')
+    return render_template('temp/testing_flask.html')
 
 @app.route('/', methods=['POST'])
 def my_form_post():
@@ -19,7 +19,7 @@ def my_form_post():
 
 @app.route('/play_audio/')
 def playaudio():
-    return render_template('playaudio.html')
+    return render_template('temp/playaudio.html')
     
 
 # @app.route('/testing_flask/result', methods=['POST', "GET"])
