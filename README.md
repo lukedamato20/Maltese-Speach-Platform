@@ -10,12 +10,12 @@ This service will be made accessible via web browsers, as well as via mobile pho
 
 ## How to run
 
-1)Open windows command prompt
+1) Open windows command prompt
 
-2)Change directory to folder ()
+2) Change directory to folder ()
 
-3)type venv\Scripts\Activate
+3) type venv\Scripts\Activate
 
-4)set FLASK_APP = app.py (only for the first time)
+4) set FLASK_APP = app.py (only for the first time)
 
-5)flask run
+5) flask run
