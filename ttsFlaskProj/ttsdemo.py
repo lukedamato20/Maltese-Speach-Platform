@@ -1,5 +1,6 @@
 import soundfile as sf
 import numpy as np
+import os
 
 # Setup hyper parameters
 import hparams
@@ -32,13 +33,12 @@ train._frontend = getattr(frontend, "en")
 fs = hparams.hparams.sample_rate
 hop_length = hparams.hparams.hop_size
 
-
 # Define Utility Functions
 def tts(model, text, p=0, speaker_id=None, fast=True, figures=True):
     from synthesis import tts as _tts
     waveform, alignment, spectrogram, mel = _tts(model, text, p, speaker_id, fast)
     waveform /= np.max(np.abs(waveform), axis=0)
-    sf.write('static\output.wav', waveform, fs, 'PCM_24')
+    sf.write('flaskfiles/static/output.wav', waveform, fs, 'PCM_24')
 
 
 model = build_model()
@@ -57,25 +57,25 @@ model = load_checkpoint(checkpoint_path, model, None, True)
 # # fix kh instances from g2p tool
 # text = (re.sub('kh', '', re.sub('kh ', 'h ', text)))
 #
-# # make sure the sentence has sufficent length for attention mechanisim
+# # make sure the sentence has sufficient length for attention mechanism
 # text.ljust(30, '.')
 #
 # # make sure a sentence ends in full stop
 # if (text[-1:] != '.'):
 #     text = text + '.'
 #
-# # padd 'x' sounds with spaces. Tend to produce better pronounciations more often than not.
+# # padd 'x' sounds with spaces. Tend to produce better pronunciations more often than not.
 # text = re.sub('ʃ', ' ʃ ', text)
 
-## Generate Speech
 
+# Generate Speech
 def text_manipulation(text):
     text = g2p_cw_rules(text)
 
     # fix kh instances from g2p tool
     text = (re.sub('kh', '', re.sub('kh ', 'h ', text)))
 
-    # make sure the sentence has sufficent length for attention mechanisim
+    # make sure the sentence has sufficient length for attention mechanism
     text.ljust(30, '.')
 
     # make sure a sentence ends in full stop

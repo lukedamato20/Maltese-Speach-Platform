@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<!-- Text Input -->
+<div class="row">
+    <div class="column side"> </div>
+    <div class="column middle">
+
+        <h1 style="text-align: center">Text Input</h1>
+        <br>
+
+        <div class="custom-card">
+            <div>
+                <form action="/demo/result" method="POST">
+                    <label for="name">Enter the text...</label>
+                    <input type="text" id="name" name="name" placeholder="Enter a phrase, sentence or paragraph...">
+
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="column side"> </div>
+</div>
+
+<br>
+
+<script src="{{ url_for('static',filename='scripts.js') }}"></script>
+{% endblock %}

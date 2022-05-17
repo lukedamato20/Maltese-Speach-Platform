@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<!-- Text Input -->
+<div class="row">
+    <div class="column side"> </div>
+    <div class="column middle">
+
+        <!-- Speech Output -->
+        <div class="row">
+            <div class="column side"> </div>
+            <div class="column middle">
+
+                <h1 style="text-align: center">Speech Output</h1>
+
+                <div class="custom-card" style="align-items: center;" >
+                    <form action="/demo" method="POST">
+                        {% if name %}
+                        <div class="audio-container">
+                            <audio controls>
+                                <source src= '../static/output.wav' type="audio/wav">
+                            </audio>
+                        </div>
+
+                        <input type="submit" value="Retry">
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+
+            <div class="column side"> </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
