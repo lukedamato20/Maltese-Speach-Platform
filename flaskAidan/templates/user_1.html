@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
+<script>
+
+function wordCloud(selector) {
+
+  var fill = d3.scale.category20();
+
+  // construct the word cloud's SVG element
+  var svg = d3.select(selector).append("svg")
+      .attr("width", 500)
+      .attr("height", 500)
+      .append("g")
+      .attr("transform", "translate(250,250)");
+
+
+  // drawing the word cloud
+  function draw(words) {
+      var cloud = svg.selectAll("g text")
+                      .data(words, function(d) { return d.text; })
+
+      // cloud for enterring words
+      cloud.enter()
+          .append("text")
+          .style("font-family", "Times")
+          .style("fill", function(d, i) { return fill(i); })
+          .attr("text-anchor", "middle")
+          .attr('font-size', 1)
+          .text(function(d) { return d.text; });
+
+      // implementing the transition from enterring words to exitting words
+      cloud
+          .transition()
+              .duration(600)
+              .style("font-size", function(d) { return d.size + "px"; })
+              .attr("transform", function(d) {
+                  return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+              })
+              .style("fill-opacity", 1);
+
+      // cloud for exitting words
+      cloud.exit()
+          .transition()
+              .duration(200)
+              .style('fill-opacity', 1e-6)
+              .attr('font-size', 1)
+              .remove();
+  }
+
+  return {
+
+
+      update: function(words) {
+          d3.layout.cloud().size([400, 400])
+              .words(words)
+              .padding(5)
+              .rotate(function() { return ~~(Math.random() * 2) * 90; })
+              .font("Times")
+              .fontSize(function(d) { return d.size; })
+              .on("end", draw)
+              .start();
+      }
+  }
+
+}
+
+// Some emails extracated from user 1 (allen-p)
+var words = [
+    "The west desk would like 2 analysts. Here is our forecast  To ensure that you experience a successful migration from Notes to Outlook, it is necessary to gather individual user information prior to your date o= f migration" ,
+    "Please take a few minutes to completely fill out the followinsurvey. Double Click on document to put it in Edit mode. When you finish" ,
+    "Attached is the final version of the California Summary report with maps, graphs, and historical data." ,
+    "If you have any questions, please contact Kristin Walsh at (713) 853-9510.",
+    "Currently there are two bills dealing  with the bridge  loan; AB 8X and AB",
+    "The second likely triggering event, which is linked directly to the bond is=suance, would be an effort by Senator Bowen to amend SB 31X (bridge loan)",
+    "Here is a photograph of a similar house.  The dimensions would be 56'Wide X 41' Deep for the living area.  In addition there will be a 6' deep two story porch across the entire back and 30' across the front.  A modification to the front will be the addition of a gable across 25' on the left side.  The living area will be brought forward under this gable to be flush with the front porch.  ",
+    "The implied risk created by the san juan and rockies indeces being partially set after today is the same as the risk in a long futures position.  Whatever the risk was prior should not matter.  Since the rest of the books are very short price this should be a large offset.  If the VAR calculation does not match the company's true risk then it needs to be revised or adjusted.",
+    "I received the drawings.  They look good at first glance.  I will look at them in depth this weekend.The proforma was in the winmail.dat format which I cannot open. Please resend in excel or a pdf format.  If you will send it to pallen70@hotmail.com, I will be able to look at it this weekend.  Does this fitimeline for the investment dollars?  I just want to get a feel for when you will start needing money.  ",
+    "Please excuse the delay in getting these resumes to you.  Larry did not havehis prepared and then I forgot to send them.  I'll try to get a statusreport to you latter today."
+]
+
+// removing symbols and returning words randomly using math.random
+function getWords(i) {
+  return words[i]
+          .replace(/[!\.,:;\?]/g, '')
+          .split(' ')
+          .map(function(d) {
+              return {text: d, size: 10 + Math.random() * 60};
+          })
+}
+
+// showing new words after removing symbols from getWords function
+function showNewWords(vis, i) {
+  i = i || 0;
+
+  vis.update(getWords(i ++ % words.length))
+  setTimeout(function() { showNewWords(vis, i + 1)}, 2000)
+}
+
+var myWordCloud = wordCloud('body');
+
+// iterating through each word
+showNewWords(myWordCloud);
+
+</script>
+</body>
+</html>
